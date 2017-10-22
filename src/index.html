@@ -2,9 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title..</title>
+  <title>Stock Shaker</title>
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    header, footer {
+      text-align: center;
+      font-family: sans-serif;
+      background-color: #1976d2;
+      color: #fafafa;
+    }
+
+    header {
+      height: 150px;
+    }
+
+    header > h1 {
+      margin-top: 0px;
+      padding-top: 40px;
+      font-size: 60px;
+      font-weight: bold;
+    }
+
+    header > svg {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      height: 70px;
+      fill: #fafafa;
+    }
+
+    footer {
+      height: 120px;
+      padding-top: 20px;
+      font-size: 45px;
+    }
+
+    main {
+      flex: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      background-color: #fafafa;
+      font-size: 70px;
+      font-family: monospace;
+    }
+
+    main.loading {
+      background-color: #ffffff;
+    }
+
+    main > div {
+      width: 520px;
+    }
+
+    a, a:visited {
+      color: #fafafa
+    }
+  </style>
 </head>
-<body>
-  <center>Loading...</center>
+<body class="container">
+  <main class="loading">Loading...</main>
+  <script>var staticRenderTimestamp = performance.now(); console.time('js.render-shell');</script>
 </body>
 </html>

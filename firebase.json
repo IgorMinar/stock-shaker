@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist-all/",
+    "redirects": [ {
+      "source" : "/",
+      "destination" : "/8/",
+      "type" : 302
+    } ]
+  }
+}

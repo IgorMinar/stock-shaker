@@ -5,23 +5,33 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build:prod": "rm -rf dist && webpack --config webpack.config.js",
-    "build:debug": "rm -rf dist && webpack --config webpack.debug.config.js",
-    "watch:prod": "yarn build:prod && watch -p 'src/*' -p 'webpack.*.js' -c 'yarn build:prod'",
-    "watch:debug": "yarn build:debug && watch -p 'src/*' -p 'webpack.*.js' -c 'yarn build:debug'",
-    "serve": "serve dist/"
+    "build:prod": "rm -rf dist && webpack && source-map-explorer dist/main.*.js --html > dist/sme-report.html",
+    "build:debug": "rm -rf dist && webpack --env.debugProduction=true && source-map-explorer dist/main.*.js --html > dist/sme-report.html",
+    "watch:prod": "yarn build:prod && watch -p 'src/*' -p 'webpack.config.js' -c 'yarn build:prod'",
+    "watch:debug": "yarn build:debug && watch -p 'src/*' -p 'webpack.config.js' -c 'yarn build:debug'",
+    "serve": "serve dist/",
+    "postinstall": "patch -p0 -i ./node_modules-patches/rxjs-path-mapping.js.patch",
+    "build:all": "rm -rf dist-all && mkdir dist-all && git checkout master; for i in {8..0}; do git checkout master~$i; yarn build:prod; git log -p -1 > dist/patch.txt; mv dist dist-all/$(( 8 - $i )); done; cp src/favicon.ico dist-all/; git checkout master",
+    "deploy": "firebase deploy"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "firebase-tools": "^3.13.1",
+    "preload-webpack-plugin": "^2.0.0",
     "serve": "^6.3.1",
+    "source-map-explorer": "^1.5.0",
     "watch-cli": "^0.2.3",
     "webpack": "^3.8.1",
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.3"
   },
   "dependencies": {
     "html-webpack-plugin": "^2.30.1",
     "rxjs": "^5.5.0"
+  },
+  "engines": {
+    "yarn": "1.0.2"
   }
 }
