@@ -1,7 +1,6 @@
 import {debounce} from 'rxjs/operators';
 import {renderView} from './view';
 import {perfMetrics, perfLog} from './perf';
-import {dataFeedFor} from './data';
 
 
 const appElement = document.querySelector('body');
@@ -13,8 +12,10 @@ renderView({tickers, perfMetrics}, appElement);
 perfLog.shellRendered();
 
 
-dataFeedFor(tickers).subscribe(stockData => {
-  // re-render view with data
-  renderView({tickers, stockData, perfMetrics}, appElement);
+System.import('./data').then(({dataFeedFor}) => {
+  dataFeedFor(tickers).subscribe(stockData => {
+    // re-render view with data
+    renderView({tickers, stockData, perfMetrics}, appElement);
+  });
+  perfLog.dataRendered();
 });
-perfLog.dataRendered();
