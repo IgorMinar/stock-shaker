@@ -5,6 +5,17 @@
       "source" : "/",
       "destination" : "/8/",
       "type" : 302
-    } ]
+    } ],
+    "headers": [
+      {
+        "source": "/8/",
+        "headers": [
+          {
+            "key": "Link",
+            "value": "</8/main.951a080a6dd5f2814b9d.js>;rel=preload;as=script,</8/0.c4b7e5fa9ffface3a256.js>;rel=preload;as=script"
+          }
+        ]
+      }
+    ]
   }
 }
