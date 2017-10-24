@@ -23,7 +23,8 @@ module.exports = (env = {}) => ({
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env' ]
+            // don't transpile modules == app code as ES modules
+            presets: [['env', {modules: false}]]
           }
         }
       }
