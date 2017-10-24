@@ -1,4 +1,3 @@
-import {debounce} from 'rxjs/operators';
 import {renderView} from './view';
 import {perfMetrics, perfLog} from './perf';
 
