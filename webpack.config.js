@@ -2,12 +2,18 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const rxjsMapping = require('rxjs/_esm5/path-mapping');
 
 module.exports = (env = {}) => ({
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js'
+  },
+
+  resolve: {
+    // RxJS v5 needs a custom opt-in to be resolved as ESM
+    alias: rxjsMapping(path.resolve(__dirname, 'node_modules'))
   },
 
   module: {

@@ -1,4 +1,4 @@
-import {interval} from 'rxjs/Observable/interval';
+import {interval} from 'rxjs/observable/interval';
 import {map, startWith} from 'rxjs/operators';
 
 
