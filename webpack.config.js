@@ -33,6 +33,9 @@ module.exports = (env = {}) => ({
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
 
+    // creates fewer webpack modules -> improves dead code elimination
+    new webpack.optimize.ModuleConcatenationPlugin(),
+
     new webpack.optimize.UglifyJsPlugin(
         env.debugProduction ? {
           mangle: false,
