@@ -1,20 +1,18 @@
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/operator/map';
+import {interval} from 'rxjs/Observable/interval';
+import {map, startWith} from 'rxjs/operators';
 
 
 export const stockExchange = {
   getFeed(tickers) {
-    return Observable.interval(500)
-        .startWith(0)
-        .map(_ => [
+    return interval(500).pipe(
+        startWith(0),
+        map(_ => [
             {symbol: 'AMZZ', price: values.AMZZ = getNewVal(values.AMZZ)},
             {symbol: 'APPP', price: values.APPP = getNewVal(values.APPP)},
             {symbol: 'GOOO', price: values.GOOO = getNewVal(values.GOOO)},
             {symbol: 'NFLL', price: values.NFLL = getNewVal(values.NFLL)},
             {symbol: 'MSFF', price: values.MSFF = getNewVal(values.MSFF)}
-        ]);
+        ]));
   }
 };
 
